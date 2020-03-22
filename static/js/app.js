@@ -7,7 +7,7 @@ var search = d3.select("#filter-btn");
 
 
 
-//create html table with all data values
+//function that updates table according to user input filters
 function updateTable(filteredData){
 
     filteredData.forEach((alienSight)=> { 
@@ -19,6 +19,7 @@ function updateTable(filteredData){
     });
 };
 
+//populate table with inital full dataset of sightings
 updateTable(tableData);
 
 //on submit function, reset html table with values that match search results
@@ -31,20 +32,21 @@ search.on("click", function() {
     dateValue = d3.select("#datetime").property("value");
     cityValue = d3.select("#city").property("value");
     stateValue = d3.select("#state").property("value");
+    
     var filteredData = tableData;
 
+    //use form input data to filter data
     if (dateValue!=""){
         filteredData = filteredData.filter(filteredData => filteredData.datetime === dateValue);
-        // updateTable(dateData);
     }
     if (cityValue!=""){
         filteredData = filteredData.filter(filteredData => filteredData.city === cityValue.toLowerCase());
-        // updateTable(cityData);
     }
     if (stateValue!=""){
         filteredData = filteredData.filter(filteredData => filteredData.state === stateValue.toLowerCase());
-        // updateTable(stateData);
     }
+
+    //call function to repopulate html table with new filtered data
     updateTable(filteredData);
   });
 
