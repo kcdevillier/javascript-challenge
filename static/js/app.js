@@ -7,6 +7,7 @@ var search = d3.select("#filter-btn");
 
 
 
+
 //function that updates table according to user input filters
 function updateTable(filteredData){
 
@@ -24,6 +25,9 @@ updateTable(tableData);
 
 //on submit function, reset html table with values that match search results
 search.on("click", function() { 
+    
+    //prevent refresing 
+    d3.event.preventDefault();
     
     //clear html table
     tbody.html(""); 
